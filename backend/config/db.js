@@ -7,7 +7,7 @@ const dataBase = config.get("mongoURI");
 const connectDB = async () => {
 	mongoose
 		.connect(dataBase)
-		.then(() => console.log("Data Base connected succesfully...."))
+		.then(() => console.log("Morife is sucessfully running 🏃🏃🏃🏃"))
 		.catch((err) => {
 			console.error(err.message);
 			process.exit(1);
