@@ -69,7 +69,7 @@ router.post(
 			res.status(500).send("Server Error");
 		}
 
-		res.send("Log in user");
+		res.send({ token });
 	}
 );
 
