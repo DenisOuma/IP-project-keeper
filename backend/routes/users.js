@@ -8,10 +8,6 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../models/User");
 
-// @route   GET api/contacts
-// @desc    Get all users contacts
-// @access  Private
-
 router.post(
 	"/",
 	[
@@ -70,10 +66,6 @@ router.post(
 		}
 	}
 );
-
-// @route   POST api/contacts
-// @desc    Add new contact
-// @access  Private
 
 router.post("/", (req, res) => {
 	res.send("Loin User");

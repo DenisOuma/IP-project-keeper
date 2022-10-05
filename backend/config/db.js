@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const config = require("config");
 const dataBase = config.get("mongoURI");
 // console.log(dataBase);
-
-// Connecting my db with the application
 const connectDB = async () => {
 	mongoose
 		.connect(dataBase)
