@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AttachEmailOutlinedIcon from "@mui/icons-material/AttachEmailOutlined";
 import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined";
+import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 
 function ContactItem({ contact }) {
 	const { id, name, email, phone, type } = contact;
@@ -19,6 +20,7 @@ function ContactItem({ contact }) {
 					{type.charAt(0).toUpperCase() + type.slice(1)}
 				</span>
 			</h3>
+
 			<ul className="list">
 				{email && (
 					<li>
@@ -36,9 +38,13 @@ function ContactItem({ contact }) {
 					</li>
 				)}
 			</ul>
-			<p>
-				<button className="btn btn-dark btn-sm">Update</button>
-				<button className="btn btn-danger btn-sm">Delete</button>
+			<p className="delete-update">
+				<button className="btn btn-dark btn-sm">Edit</button>
+				<span>
+					<button className="btn btn-sm">
+						<DeleteSweepRoundedIcon className="delete-icon" />
+					</button>
+				</span>
 			</p>
 		</div>
 	);
