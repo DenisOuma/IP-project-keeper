@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import ContactContext from "../../context/contact/contactContext";
 import AttachEmailOutlinedIcon from "@mui/icons-material/AttachEmailOutlined";
 import SettingsPhoneOutlinedIcon from "@mui/icons-material/SettingsPhoneOutlined";
 import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 
 function ContactItem({ contact }) {
+	const contactContext = useContext(ContactContext);
+	const { deleteContact } = contactContext;
 	const { id, name, email, phone, type } = contact;
+
+	const onDelete = () => {
+		deleteContact(id);
+	};
+
 	return (
 		<div className="card bg-light">
 			<h3 className="text-primary text-left">
@@ -41,7 +49,7 @@ function ContactItem({ contact }) {
 			<p className="delete-update">
 				<button className="btn btn-dark btn-sm">Edit</button>
 				<span>
-					<button className="btn btn-sm">
+					<button className="btn btn-sm" onClick={onDelete}>
 						<DeleteSweepRoundedIcon className="delete-icon" />
 					</button>
 				</span>
