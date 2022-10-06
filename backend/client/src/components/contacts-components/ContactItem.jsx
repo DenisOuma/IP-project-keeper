@@ -7,11 +7,12 @@ import DeleteSweepRoundedIcon from "@mui/icons-material/DeleteSweepRounded";
 
 function ContactItem({ contact }) {
 	const contactContext = useContext(ContactContext);
-	const { deleteContact } = contactContext;
+	const { deleteContact, setCurrentContact, clearContact } = contactContext;
 	const { id, name, email, phone, type } = contact;
 
 	const onDelete = () => {
 		deleteContact(id);
+		clearContact();
 	};
 
 	return (
@@ -47,7 +48,12 @@ function ContactItem({ contact }) {
 				)}
 			</ul>
 			<p className="delete-update">
-				<button className="btn btn-dark btn-sm">Edit</button>
+				<button
+					className="btn btn-dark btn-sm"
+					onClick={() => setCurrentContact(contact)}
+				>
+					Edit
+				</button>
 				<span>
 					<button className="btn btn-sm" onClick={onDelete}>
 						<DeleteSweepRoundedIcon className="delete-icon" />

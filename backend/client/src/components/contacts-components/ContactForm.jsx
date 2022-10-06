@@ -3,6 +3,21 @@ import ContactContext from "../../context/contact/contactContext";
 
 function ContactForm() {
 	const contactContext = useContext(ContactContext);
+	const { addContact, updateContact, clearContact, current } = contactContext;
+
+	React.useEffect(() => {
+		if (current !== null) {
+			setContact(current);
+		} else {
+			setContact({
+				name: "",
+				email: "",
+				phone: "",
+				type: "personal",
+			});
+		}
+	}, [contactContext, current]);
+
 	const [contact, setContact] = React.useState({
 		name: "",
 		email: "",
@@ -13,22 +28,25 @@ function ContactForm() {
 	const { name, email, phone, type } = contact;
 	const onChange = (e) =>
 		setContact({ ...contact, [e.target.name]: e.target.value });
-	console.log(contact);
 	const onSubmit = (e) => {
 		e.preventDefault();
-		contactContext.addContact(contact);
-		setContact({
-			name: "",
-			email: "",
-			phone: "",
-			type: "personal",
-		});
+		if (current === null) {
+			addContact(contact);
+		} else {
+			updateContact(contact);
+		}
+		clearAll();
+	};
+	const clearAll = () => {
+		clearContact();
 	};
 
 	return (
 		<>
 			<form onSubmit={onSubmit}>
-				<h2 className="text-primary">Add A New Contact</h2>
+				<h2 className="text-primary">
+					{current ? "Edit Contact" : "Add A New Contact"}
+				</h2>
 				<input
 					type="text"
 					placeholder="name"
@@ -70,10 +88,17 @@ function ContactForm() {
 				<div className="submit-btn">
 					<input
 						type="submit"
-						value="Add Contact"
+						value={current ? "Edit Contact" : "Add A New Contact"}
 						className="btn btn-success btn-block"
 					/>
 				</div>
+				{current && (
+					<div className="clear-btn">
+						<button className="btn btn-danger btn-block" onClick={clearAll}>
+							Clear
+						</button>
+					</div>
+				)}
 			</form>
 		</>
 	);
