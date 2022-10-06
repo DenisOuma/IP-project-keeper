@@ -421,7 +421,7 @@ table th {
 	margin-right: 0.6rem;
 }
 
-/* Animation (Add After) */
+/* Animation (Add After) Transition effect */
 .item-enter {
 	opacity: 0;
 }
