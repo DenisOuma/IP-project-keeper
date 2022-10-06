@@ -54,7 +54,11 @@ img {
 	line-height: 1.2;
 	margin-bottom: 1rem;
 }
-
+.icon-name {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 .large {
 	font-size: 3rem;
 	line-height: 1.2;
@@ -95,6 +99,10 @@ img {
 	padding: 1rem;
 	border: #ccc 1px dotted;
 	margin: 0.7rem 0;
+}
+ul {
+	display: flex;
+	align-items: center;
 }
 
 /* List */
