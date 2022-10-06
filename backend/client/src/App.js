@@ -6,6 +6,8 @@ import HomePage from "./components/pages/HomePage";
 import AboutPage from "./components/pages/AboutPage";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/authentication/AuthState";
+import Register from "./components/authentication/Register";
+import Login from "./components/authentication/Login";
 
 function App() {
 	return (
@@ -18,6 +20,8 @@ function App() {
 							<Routes>
 								<Route exact path="/" element={<HomePage />} />
 								<Route exact path="/about" element={<AboutPage />} />
+								<Route exact path="/register" element={<Register />} />
+								<Route exact path="/signin" element={<Login />} />
 							</Routes>
 						</div>
 					</>

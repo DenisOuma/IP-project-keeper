@@ -113,6 +113,9 @@ ul {
 	/* display: flex; */
 	/* align-items: center; */
 }
+.icon-space {
+	margin-right: 5px;
+}
 
 /* List */
 .list {

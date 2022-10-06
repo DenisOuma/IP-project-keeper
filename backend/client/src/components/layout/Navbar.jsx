@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
+import LoginIcon from "@mui/icons-material/Login";
 
 function Navbar() {
 	return (
@@ -14,14 +16,26 @@ function Navbar() {
 			<ul>
 				<li>
 					<Link to="/" className="icon-name">
-						<HomeRoundedIcon fontSize="small" />
+						<HomeRoundedIcon fontSize="small" className="icon-space" />
 						Home
 					</Link>
 				</li>
 				<li>
 					<Link to="/about" className="icon-name">
-						<InfoRoundedIcon fontSize="small" />
+						<InfoRoundedIcon fontSize="small" className="icon-space" />
 						About
+					</Link>
+				</li>
+				<li>
+					<Link to="/register" className="icon-name">
+						<SensorOccupiedIcon fontSize="small" className="icon-space" />
+						Sign Up
+					</Link>
+				</li>
+				<li>
+					<Link to="/signin" className="icon-name">
+						<LoginIcon fontSize="small" className="icon-space" />
+						Sign In
 					</Link>
 				</li>
 			</ul>
