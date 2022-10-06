@@ -8,7 +8,7 @@ function Navbar() {
 	return (
 		<div className="navbar bg-primary">
 			<h1>
-				<LockPersonTwoToneIcon fontSize="large" style={{ colour: "red" }} />
+				<LockPersonTwoToneIcon fontSize="large" className="icon-style" />
 				Keeper
 			</h1>
 			<ul>

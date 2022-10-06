@@ -47,7 +47,16 @@ img {
 	overflow: hidden;
 	padding: 0 2rem;
 }
-
+.list li {
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+}
+.icon-style {
+	color: var(--success-color);
+	font-size: 1.5rem;
+	margin-right: 10px;
+}
 /* Text Styles*/
 .x-large {
 	font-size: 4rem;
@@ -101,8 +110,8 @@ img {
 	margin: 0.7rem 0;
 }
 ul {
-	display: flex;
-	align-items: center;
+	/* display: flex; */
+	/* align-items: center; */
 }
 
 /* List */
@@ -201,6 +210,8 @@ ul {
 	cursor: pointer;
 	margin-right: 0.5rem;
 	transition: opacity 0.2s ease-in;
+	border-radius: 5px;
+	font-weight: 700;
 	outline: none;
 }
 
