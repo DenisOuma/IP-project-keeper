@@ -1,6 +1,21 @@
 import React from "react";
+import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/authentication/authContext";
 
 function Register() {
+	const alertContext = React.useContext(AlertContext);
+	const authContext = React.useContext(AuthContext);
+
+	const { setAlert } = alertContext;
+	const { register, error } = authContext;
+
+	React.useEffect(() => {
+		if (error === "User already exists, Please login") {
+			setAlert(error, "danger");
+		}
+		// eslint-disable-next-line
+	}, [error]);
+
 	const [newUser, setNewUser] = React.useState({
 		name: "",
 		email: "",
@@ -16,7 +31,17 @@ function Register() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log("Register submit");
+		if (name === "" || email === "" || password === "") {
+			setAlert("Please enter Required fields", "danger");
+		} else if (password !== confirmPassword) {
+			setAlert("Passwords do not match", "danger");
+		} else {
+			register({
+				name,
+				email,
+				password,
+			});
+		}
 	};
 
 	return (
@@ -28,11 +53,24 @@ function Register() {
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
 					<label htmlFor="name">Name</label>
-					<input type="text" name="name" value={name} onChange={onChange} />
+					<input
+						type="text"
+						name="name"
+						value={name}
+						onChange={onChange}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="email">Email Address</label>
-					<input type="email" name="email" value={email} onChange={onChange} />
+					<input
+						type="email"
+						name="email"
+						value={email}
+						onChange={onChange}
+						required
+						minlength="6"
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="password">Password</label>
@@ -41,6 +79,8 @@ function Register() {
 						name="password"
 						value={password}
 						onChange={onChange}
+						required
+						minlength="6"
 					/>
 				</div>
 				<div className="form-group">
@@ -50,6 +90,7 @@ function Register() {
 						name="confirmPassword"
 						value={confirmPassword}
 						onChange={onChange}
+						required
 					/>
 				</div>
 				<input
