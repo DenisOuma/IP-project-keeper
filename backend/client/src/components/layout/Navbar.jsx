@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/authentication/authContext";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
@@ -7,6 +8,42 @@ import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
 import LoginIcon from "@mui/icons-material/Login";
 
 function Navbar() {
+	const authContext = React.useContext(AuthContext);
+	const { isAuthenticated, logout, user } = authContext;
+
+	const onLogout = () => {
+		logout();
+	};
+
+	const authLinks = (
+		<Fragment>
+			<li> {user && user.name}</li>
+			<li>
+				<a onClick={onLogout} href="#!">
+					<LoginIcon />
+					<span className="hide-sm">Logout</span>
+				</a>
+			</li>
+		</Fragment>
+	);
+
+	const guestLinks = (
+		<Fragment>
+			<li>
+				<Link to="/register" className="icon-name">
+					<SensorOccupiedIcon fontSize="small" className="icon-space" />
+					Sign Up
+				</Link>
+			</li>
+			<li>
+				<Link to="/signin" className="icon-name">
+					<LoginIcon fontSize="small" className="icon-space" />
+					Sign In
+				</Link>
+			</li>
+		</Fragment>
+	);
+
 	return (
 		<div className="navbar bg-primary">
 			<h1>
@@ -14,30 +51,19 @@ function Navbar() {
 				Keeper
 			</h1>
 			<ul>
-				<li>
+				{isAuthenticated ? authLinks : guestLinks}
+				{/* <li>
 					<Link to="/" className="icon-name">
 						<HomeRoundedIcon fontSize="small" className="icon-space" />
 						Home
 					</Link>
-				</li>
-				<li>
+				</li> */}
+				{/* <li>
 					<Link to="/about" className="icon-name">
 						<InfoRoundedIcon fontSize="small" className="icon-space" />
 						About
 					</Link>
-				</li>
-				<li>
-					<Link to="/register" className="icon-name">
-						<SensorOccupiedIcon fontSize="small" className="icon-space" />
-						Sign Up
-					</Link>
-				</li>
-				<li>
-					<Link to="/signin" className="icon-name">
-						<LoginIcon fontSize="small" className="icon-space" />
-						Sign In
-					</Link>
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	);

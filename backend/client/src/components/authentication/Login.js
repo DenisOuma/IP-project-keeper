@@ -22,7 +22,7 @@ function Login(props) {
 			clearErrors();
 		}
 		// eslint-disable-next-line
-	}, [error, isAuthenticated, history]);
+	}, [error, isAuthenticated]);
 	const [newUser, setNewUser] = React.useState({
 		email: "",
 		password: "",

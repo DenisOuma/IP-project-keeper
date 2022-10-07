@@ -19,7 +19,7 @@ function Register(props) {
 			clearErrors();
 		}
 		// eslint-disable-next-line
-	}, [error, isAuthenticated, history]);
+	}, [error, isAuthenticated]);
 
 	const [newUser, setNewUser] = React.useState({
 		name: "",

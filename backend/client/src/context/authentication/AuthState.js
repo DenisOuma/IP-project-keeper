@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-import authContext from "./authContext";
 import axios from "axios";
+import authContext from "./authContext";
 import authReducer from "./authReducer";
 import setAuthToken from "../../utilities/setAuthToken";
 import {
@@ -77,6 +77,7 @@ const AuthState = (props) => {
 
 		try {
 			const res = await axios.post("/api/auth", formData, config);
+			console.log();
 
 			dispatch({
 				type: LOGIN_SUCCESS,
@@ -92,7 +93,9 @@ const AuthState = (props) => {
 		}
 	};
 
-	const logout = () => console.log("load user");
+	const logout = () => {
+		dispatch({ type: LOGOUT });
+	};
 
 	const clearErrors = () => {
 		dispatch({ type: CLEAR_ERRORS });
