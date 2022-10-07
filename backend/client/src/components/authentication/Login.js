@@ -1,6 +1,25 @@
 import React from "react";
+import AuthContext from "../../context/authentication/authContext";
+import AlertContext from "../../context/alert/alertContext";
 
-function Login() {
+function Login(props) {
+	const alertContext = React.useContext(AlertContext);
+	const authContext = React.useContext(AuthContext);
+
+	const { setAlert } = alertContext;
+	const { login, error, clearErrors, isAuthenticated } = authContext;
+
+	React.useEffect(() => {
+		if (isAuthenticated) {
+			props.history.push("/");
+		}
+
+		if (error === "User already exists, Please login") {
+			setAlert(error, "danger");
+			clearErrors();
+		}
+		// eslint-disable-next-line
+	}, [error, isAuthenticated, props.history]);
 	const [newUser, setNewUser] = React.useState({
 		email: "",
 		password: "",

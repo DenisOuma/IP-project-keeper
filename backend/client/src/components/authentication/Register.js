@@ -1,20 +1,25 @@
 import React from "react";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/authentication/authContext";
+import { useNavigate } from "react-router-dom";
 
-function Register() {
+function Register(props) {
 	const alertContext = React.useContext(AlertContext);
 	const authContext = React.useContext(AuthContext);
-
+	const history = useNavigate();
 	const { setAlert } = alertContext;
-	const { register, error } = authContext;
-
+	const { register, error, clearErrors, isAuthenticated } = authContext;
 	React.useEffect(() => {
+		if (isAuthenticated) {
+			history("/");
+		}
+
 		if (error === "User already exists, Please login") {
 			setAlert(error, "danger");
+			clearErrors();
 		}
 		// eslint-disable-next-line
-	}, [error]);
+	}, [error, isAuthenticated, history]);
 
 	const [newUser, setNewUser] = React.useState({
 		name: "",
@@ -69,7 +74,6 @@ function Register() {
 						value={email}
 						onChange={onChange}
 						required
-						minlength="6"
 					/>
 				</div>
 				<div className="form-group">
@@ -80,7 +84,7 @@ function Register() {
 						value={password}
 						onChange={onChange}
 						required
-						minlength="6"
+						minLength="6"
 					/>
 				</div>
 				<div className="form-group">
@@ -91,6 +95,7 @@ function Register() {
 						value={confirmPassword}
 						onChange={onChange}
 						required
+						minLength="6"
 					/>
 				</div>
 				<input
