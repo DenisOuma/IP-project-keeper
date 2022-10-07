@@ -63,7 +63,7 @@ router.post(
 			res.status(500).send("Server Error");
 		}
 
-		res.send({ token });
+		//res.send({ token });
 	}
 );
 

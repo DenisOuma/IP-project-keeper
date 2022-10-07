@@ -11,7 +11,7 @@ function Login(props) {
 
 	const { setAlert } = alertContext;
 	const { login, error, clearErrors, isAuthenticated } = authContext;
-
+	console.log(authContext);
 	React.useEffect(() => {
 		if (isAuthenticated) {
 			history("/");

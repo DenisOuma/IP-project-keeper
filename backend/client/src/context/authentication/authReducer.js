@@ -13,6 +13,7 @@ import {
 export default (state, action) => {
 	switch (action.type) {
 		case USER_LOADED:
+			console.log("user loaded");
 			return {
 				...state,
 				isAuthenticated: true,
@@ -22,7 +23,9 @@ export default (state, action) => {
 
 		case REGISTER_SUCCESS:
 		case LOGIN_SUCCESS:
-			localStorage.setItem("token", action.payload.token);
+			console.log(action.payload.token);
+			localStorage.setItem("userToken", action.payload.token);
+			localStorage.setItem("user", action.payload.token);
 			return {
 				...state,
 				...action.payload,

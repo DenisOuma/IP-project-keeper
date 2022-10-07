@@ -13,8 +13,8 @@ import AlertMessage from "./components/layout/AlertMessage";
 import setAuthToken from "./utilities/setAuthToken";
 import PrivateRoute from "./components/routes/PrivateRoute";
 
-if (localStorage.token) {
-	setAuthToken(localStorage.token);
+if (localStorage.userToken) {
+	setAuthToken(localStorage.userToken);
 }
 
 function App() {
@@ -28,7 +28,15 @@ function App() {
 							<div className="container">
 								<AlertMessage />
 								<Routes>
-									<Route exact path="/" element={<HomePage />} />
+									<Route
+										exact
+										path="/"
+										element={
+											<PrivateRoute>
+												<HomePage />
+											</PrivateRoute>
+										}
+									/>
 									<Route exact path="/about" element={<AboutPage />} />
 									<Route exact path="/register" element={<Register />} />
 									<Route exact path="/login" element={<Login />} />

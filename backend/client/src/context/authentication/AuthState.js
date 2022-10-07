@@ -16,7 +16,7 @@ import {
 
 const AuthState = (props) => {
 	const initialState = {
-		token: localStorage.getItem("token"),
+		token: localStorage.getItem("userToken"),
 		isAuthenticated: null,
 		loading: true,
 		user: null,
@@ -26,10 +26,14 @@ const AuthState = (props) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const loadUser = async () => {
-		if (localStorage.token) {
-			setAuthToken(localStorage.token);
+		if (localStorage.userToken) {
+			setAuthToken(localStorage.userToken, {
+				headers: {
+					"x-auth-token": localStorage.userToken,
+				},
+			});
 		}
-
+		console.log("in load user");
 		try {
 			const res = await axios.get("/api/auth");
 
@@ -38,6 +42,7 @@ const AuthState = (props) => {
 				payload: res.data,
 			});
 		} catch (err) {
+			console.log("load user=>", err);
 			dispatch({
 				type: AUTH_ERROR,
 			});

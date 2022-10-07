@@ -49,7 +49,7 @@ function Navbar() {
 			</li>
 		</Fragment>
 	);
-
+	console.log(authContext);
 	return (
 		<div className="navbar bg-primary">
 			<h1>

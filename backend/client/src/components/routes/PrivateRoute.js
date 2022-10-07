@@ -2,20 +2,13 @@ import React from "react";
 import { Navigate, Route } from "react-router-dom";
 import AuthContext from "../../context/authentication/authContext";
 
-function PrivateRoute({ component: Component, ...rest }) {
-	const authContext = React.useContext();
+function PrivateRoute({ children }) {
+	const authContext = React.useContext(AuthContext);
 	const { isAuthenticated, loading } = authContext;
-	return (
-		<Route
-			{...rest}
-			render={(props) =>
-				!isAuthenticated && !loading ? (
-					<Navigate to="/login" />
-				) : (
-					<Component {...props} />
-				)
-			}
-		/>
+	return isAuthenticated && !loading ? (
+		children
+	) : (
+		<Navigate to="/login"></Navigate>
 	);
 }
 
