@@ -53,7 +53,7 @@ img {
 	/* justify-content: space-between; */
 }
 .icon-style {
-	color: var(--success-color);
+	color: goldenrod;
 	font-size: 1.5rem;
 	margin-right: 10px;
 }
@@ -115,6 +115,7 @@ ul {
 }
 .icon-space {
 	margin-right: 5px;
+	/* color: yellow !important; */
 }
 
 /* List */
