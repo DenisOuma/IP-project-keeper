@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/authentication/authContext";
 import ContactContext from "../../context/contact/contactContext";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
@@ -23,12 +23,35 @@ function Navbar() {
 
 	const authLinks = (
 		<Fragment>
-			<li> {user && user.name}</li>
 			<li>
-				<a onClick={onLogout} href="#!">
-					<LoginIcon />
+				<Link to="/" className="icon-name">
+					<HomeRoundedIcon fontSize="small" className="icon-space" />
+					Home
+				</Link>
+			</li>
+			<li>
+				<a
+					onClick={onLogout}
+					href="#!"
+					style={{ display: "flex", alignItems: "center" }}
+				>
+					<LoginIcon style={{ color: "grey", marginRight: "10px" }} />
 					<span className="hide-sm">Logout</span>
 				</a>
+			</li>
+			<li>
+				<Link to="/about" className="icon-name">
+					<InfoRoundedIcon fontSize="small" className="icon-space" />
+					About
+				</Link>
+			</li>
+			<li style={{ display: "flex", alignItems: "center", marginLeft: "20px" }}>
+				{" "}
+				{user && user.name}{" "}
+				<AccountCircleIcon
+					fontSize="large"
+					style={{ color: "grey", marginLeft: "5px" }}
+				/>
 			</li>
 		</Fragment>
 	);
@@ -49,27 +72,15 @@ function Navbar() {
 			</li>
 		</Fragment>
 	);
-	console.log(authContext);
+	// console.log(authContext);
 	return (
 		<div className="navbar bg-primary">
 			<h1>
 				<LockPersonTwoToneIcon fontSize="large" className="icon-style" />
 				Keeper
 			</h1>
-			<ul>
+			<ul style={{ display: "flex", alignItems: "center" }}>
 				{isAuthenticated ? authLinks : guestLinks}
-				{/* <li>
-					<Link to="/" className="icon-name">
-						<HomeRoundedIcon fontSize="small" className="icon-space" />
-						Home
-					</Link>
-				</li> */}
-				<li>
-					<Link to="/about" className="icon-name">
-						<InfoRoundedIcon fontSize="small" className="icon-space" />
-						About
-					</Link>
-				</li>
 			</ul>
 		</div>
 	);
