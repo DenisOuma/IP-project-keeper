@@ -1,25 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import AuthContext from "../../context/authentication/authContext";
 import AlertContext from "../../context/alert/alertContext";
 
 function Login(props) {
 	const alertContext = React.useContext(AlertContext);
 	const authContext = React.useContext(AuthContext);
+	const history = useNavigate();
 
 	const { setAlert } = alertContext;
 	const { login, error, clearErrors, isAuthenticated } = authContext;
 
 	React.useEffect(() => {
 		if (isAuthenticated) {
-			props.history.push("/");
+			history("/");
 		}
 
-		if (error === "User already exists, Please login") {
+		if (error === "Invalid Email or Password") {
 			setAlert(error, "danger");
 			clearErrors();
 		}
 		// eslint-disable-next-line
-	}, [error, isAuthenticated, props.history]);
+	}, [error, isAuthenticated, history]);
 	const [newUser, setNewUser] = React.useState({
 		email: "",
 		password: "",
@@ -33,7 +36,13 @@ function Login(props) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log("Register submit");
+		if (email === "" || password === "") {
+			setAlert("Please enter Required fields", "danger");
+		}
+		login({
+			email,
+			password,
+		});
 	};
 
 	return (
