@@ -1,4 +1,6 @@
 {
-	"mongoURI": "mongodb+srv://nody123:Norex34Savy$@contactkeeper.5kc9ppz.mongodb.net/?retryWrites=true&w=majority",
+	"mongoURI": "mongodb://localhost:27017/yourDB",
 	"jwtSecret": "mysecrettoken"
 }
+
+// mongodb+srv://nody123:Norex34Savy$@contactkeeper.5kc9ppz.mongodb.net/?retryWrites=true&w=majority
