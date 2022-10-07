@@ -73,7 +73,7 @@ function ContactForm() {
 					type="radio"
 					name="type"
 					value="personal"
-					ckecked={type === "personal".toString()}
+					ckecked={type === "personal"}
 					onChange={onChange}
 				/>{" "}
 				Personal{" "}
@@ -81,7 +81,7 @@ function ContactForm() {
 					type="radio"
 					name="type"
 					value="professional"
-					ckecked={type === "professional".toString()}
+					ckecked={type === "professional"}
 					onChange={onChange}
 				/>{" "}
 				Professional{" "}

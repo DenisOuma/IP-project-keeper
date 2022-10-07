@@ -10,9 +10,9 @@ function AboutPage() {
 				which is why Keeper is being created. Keeper is a free personal
 				information manager that allows you to save all of your friends',
 				families', and colleges' contact information in a single database file.
-				With the built-in birthday reminder, you'll never forget another
-				birthday again! since you can now access them from any device with an
-				internet connection.
+				With the built-in ability to login, update and delete, you'll never
+				forget or loose your friends or professional contact number! since you
+				can now access them from any device with an internet connection.
 			</p>
 			<p className="bg-dark p">
 				<strong>Version</strong> 1.0.0

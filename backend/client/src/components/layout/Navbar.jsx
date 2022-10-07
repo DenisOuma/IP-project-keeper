@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/authentication/authContext";
+import ContactContext from "../../context/contact/contactContext";
+
 import LockPersonTwoToneIcon from "@mui/icons-material/LockPersonTwoTone";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
@@ -9,10 +11,14 @@ import LoginIcon from "@mui/icons-material/Login";
 
 function Navbar() {
 	const authContext = React.useContext(AuthContext);
+	const contactContext = React.useContext(ContactContext);
+
 	const { isAuthenticated, logout, user } = authContext;
+	const { clearContacts } = contactContext;
 
 	const onLogout = () => {
 		logout();
+		clearContacts();
 	};
 
 	const authLinks = (
@@ -36,7 +42,7 @@ function Navbar() {
 				</Link>
 			</li>
 			<li>
-				<Link to="/signin" className="icon-name">
+				<Link to="/login" className="icon-name">
 					<LoginIcon fontSize="small" className="icon-space" />
 					Sign In
 				</Link>
@@ -58,12 +64,12 @@ function Navbar() {
 						Home
 					</Link>
 				</li> */}
-				{/* <li>
+				<li>
 					<Link to="/about" className="icon-name">
 						<InfoRoundedIcon fontSize="small" className="icon-space" />
 						About
 					</Link>
-				</li> */}
+				</li>
 			</ul>
 		</div>
 	);
